@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+.jumb {
+	transform: scale(0.8);
+	height: 410px;
+}
