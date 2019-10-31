@@ -34,15 +34,37 @@
           <li class="nav-item">
             <%= link_to "Contact", contacts_path, class: "nav-link" %>
           </li>
+          <%unless current_user %>
+          <li class="nav-item">
+            <%= link_to "Log in", new_session_path(session.id), class: "nav-link" %>
+          </li>
+          <% end %>
+          <%if current_user %>
+          <li class="nav-item">
+            <%= link_to "Log out", session_path(session.id), method: :delete, class: "nav-link" %>
+          </li>
+          <% end %>
+          <%unless current_user %>
+            <li class="nav-item">
+              <%= link_to "Sign In", new_user_path, class: "nav-link" %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </nav>
   
+  
+
       <!-- Alert status -->
     <% if flash[:success] %>
       <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <%= flash[:success] %>
+      </div>
+    <%elsif flash[:danger] %>
+      <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:danger] %>
       </div>
     <% end %>
 

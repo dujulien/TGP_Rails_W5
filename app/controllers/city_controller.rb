@@ -10,7 +10,6 @@ class CityController < ApplicationController
     puts @city
     puts @all_users
     puts "$"*10
-    
   end
 
   def new

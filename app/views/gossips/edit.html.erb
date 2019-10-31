@@ -13,25 +13,26 @@
 <% end %>
 
 
-<!-- CREATE GOSSIP FORM -->
+<!-- EDIT GOSSIP FORM -->
 <br />
 <div class = "center">
-	<h1>Create your gossip !</h1>
+	<h1>Edit your gossip !</h1>
 	<br />
 
-	<%= form_tag gossips_path, method: "post" do %>
+	<%= form_tag gossip_path, method: "patch" do %>
 
 		  <span><strong><%= label_tag 'Title'%></strong></span>
-		  <%= text_field_tag 'title', nil, class: "form-control", placeholder: "Your gossip title" %>
+		  <%= text_field_tag 'title', @gossip.title, class: "form-control" %>
 		  <br /> 
 
 		  <span><strong><%= label_tag 'Content'%></strong></span>
-		  <%= text_area_tag 'content', nil , class: "form-control", placeholder: "Write your gossip", rows:"5" %>
+		  <%= text_area_tag 'content', @gossip.content, class: "form-control", rows:"5" %>
 		  <br /> 
 
-	  	<%= submit_tag "Create Gossip", class: "btn btn-primary btn-lg btn-block" %>
+	  	<%= submit_tag "Update Gossip", class: "btn btn-warning btn-lg btn-block" %>
 
 	<% end %>
+	<br/>
+	<span class="btn btn-danger btn-lg btn-block" role="button"> <%= link_to "Delete the gossip", gossip_path(@gossip.id), method: :delete, data: {confirm: "Are you sure?"}, style: 'color:#FFFFFF;', class: 'css_class' %>
+	</span>
 </div>
-
-

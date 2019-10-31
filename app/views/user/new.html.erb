@@ -1,0 +1,63 @@
+<!-- ALERT MESSAGE IF INVALID ACCOUNT -->
+
+<% if flash[:error] %>
+	<div class="alert alert-danger" role="alert">
+	  <button type="button" class="close" data-dismiss="alert">&times;</button>
+	  <p>The account could not be created due to the following reason(s) :</p>
+	  <ul>
+	    <% @user.errors.full_messages.each do |message| %>
+	      <li><%= message %></li>
+	    <% end %>
+	  </ul>
+	  </div>
+<% end %>
+
+
+<!-- CREATE ACCOUNT FORM -->
+<br />
+<div class = "center">
+	<h1>Create your account !</h1>
+	<br />
+
+	<%= form_tag user_index_path, method: "post" do %>
+
+		  <span><strong><%= label_tag 'First Name'%></strong></span>
+		  <%= text_field_tag 'first_name', nil, class: "form-control", placeholder: 'Your first name' %>
+		  <br /> 
+
+		  <span><strong><%= label_tag 'Last Name'%></strong></span>
+		  <%= text_field_tag 'last_name', nil, class: "form-control", placeholder: 'Your last name'  %>
+		  <br /> 
+
+		  <span><strong><%= label_tag 'Age'%></strong></span>
+		  <%= text_field_tag 'age', nil, class: "form-control", placeholder: '99'  %>
+		  <br />
+
+		  <span><strong><%= label_tag 'City'%></strong></span>
+		  <%= text_area_tag 'city', nil, class: "form-control", placeholder: 'Your city'  %>
+		  <br />
+
+		  <span><strong><%= label_tag 'Description'%></strong></span>
+		  <%= text_area_tag 'description', nil, class: "form-control", placeholder: 'Your description'  %>
+		  <br />
+
+		  <span><strong><%= label_tag 'Email address'%></strong></span>
+		  <%= text_field_tag 'email', nil, class: "form-control", placeholder: 'azerty#qwerty.com'  %>
+		  <br />
+
+		  <span><strong><%= label_tag 'Password'%></strong></span>
+		  <%= text_field_tag 'password', nil, class: "form-control", placeholder: 'Choose a password'%>
+		  <br />
+
+		  <span><strong><%= label_tag 'Confirm your password'%></strong></span>
+		  <%= text_field_tag 'password_confirmation', nil, class: "form-control", placeholder: 'Confirm your password'  %>
+		  <br />
+
+	  	<%= submit_tag "Create account", class: "btn btn-primary btn-lg btn-block" %>
+	<br />
+	<% end %>
+	<br />
+	<br />
+</div>
+
+

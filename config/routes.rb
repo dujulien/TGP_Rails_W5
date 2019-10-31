@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :team, only:[:index]
   resources :contacts, only:[:index]
   resources :city, only:[:show]
+  resources :session, only:[:new, :create, :destroy]
   # get 'welcome/', to: 'gossip#home'
   # get 'welcome/:user_name', to: 'gossip#homesecret', as: 'welcome_secret'
   # get 'gossip/:id', to:'gossip#index', as: 'gossip'

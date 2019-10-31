@@ -12,6 +12,16 @@ class UserController < ApplicationController
   end
   
   def create
+    @city = City.new(name: params[:city])
+    #if @city
+    @user = Gossip.new(first_name: params[:first_name], last_name: params[:last_name], age: params[:age], email: params[:email], descrption: params[:description], city: @city ,password: params[:password], password_confirmation: params[:password_confirmation])
+    if @user.save
+      flash[:success] = "Well done, your account has been created successfully !"
+      redirect_to gossips_path
+    elsif
+      flash.now[:error] = true
+      render :new
+    end
   end
 
   def edit

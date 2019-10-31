@@ -1,9 +1,19 @@
-<h1> <% @city.name %> </h1>
-<ol>
-<% @all_users.each do |user| %>
-	<% user.gossips.each do |gossip| %>
-		Voici les gossips
-			<ul><% gossip.content %></ul>
-	<% end %>
-<% end %>
-</ol>
+<br/>
+<div class = "container list" >
+	<h1> Here are all the gossips from <%= @city.name %>: </h1>
+	<br/>
+	<div class = "row">
+		<% @all_users.each do |user| %>
+			<% user.gossips.each_with_index do |gossip,i| %>
+				<div class="card col-xs-12 col-sm-12 col-md-4 col-lg-4">
+				  <div class="card-body">
+				  	<h3><%= gossip.title %></h3>
+				    <p><%= gossip.user.first_name %> <%= gossip.user.last_name %></p>
+					<span class="btn btn-warning" role="button"> <%= link_to "View Gossip", gossip_path(gossip.id), style: 'color:#000000;', class: 'css_class' %>
+				    </span>
+				  </div>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+</div>

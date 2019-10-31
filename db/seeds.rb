@@ -23,19 +23,17 @@ nb_gossiptag = 10
 nb_privmessages = 10
 nb_recipientlists = 20
 nb_comments = 20
-nb_ = 10
-nb_city = 10
-
+nb_likes = 10
 
 # Create 10 cities with Faker gem 
-nb_city.times do |i|
+nb_cities.times do |i|
 	City.create(name: Faker::Address.city, zip_code: Faker::Address.zip_code)
 	puts "City ##{i +1} created"
 end
 
 #Create 10 fake users with Faker gem with instances of cities
-nb_user.times do |i|
-	User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::GreekPhilosophers.quote, email: Faker::Internet.email, age: rand(17..50), city: City.find(i + 1))
+nb_users.times do |i|
+	User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::GreekPhilosophers.quote, email: Faker::Internet.email, age: rand(17..50), city: City.find(i + 1), password: "AZERTY")
 	puts "User ##{i +1} created"
 end
 
@@ -57,7 +55,7 @@ nb_gossiptag.times do |i|
 end
 
 # # # Create 10 private messages
-nb_privmessage.times do |i|
+nb_privmessages.times do |i|
 	PrivateMessage.create(content: Faker::GreekPhilosophers.quote, sender: User.find(rand(1..10)))
 	puts "PrivateMessage ##{i +1} created"
 end
@@ -68,14 +66,19 @@ nb_recipientlists.times do |i|
 end
 
 # # # Create comments for gossips
-20.times do |i|
-	Comment.create(author: User.find((i%10) + 1), content: Faker::Lorem.sentence(word_count: 5), gossip: Gossip.find(rand(1..20)))
-	puts "Gossip likes ##{i +1} created"
+nb_comments.times do |i|
+	Comment.create(user: User.find((i%10) + 1), content: Faker::Lorem.sentence(word_count: 5), gossip: Gossip.find(rand(1..20)))
+	puts "Comments ##{i +1} created"
 end
 
 # # # Create likes for gossips or comments randomly
-10.times do |i|
-	Like.create(user: User.find((i%10) + 1), gossip: Gossip.find(rand(1..20)))
+nb_likes.times do |i|
+	Like.create(user: User.find((i%10) + 1), gossip: Gossip.find(rand(1..30)))
+	puts "Gossip likes ##{i +1} created"
+end
+
+nb_likes.times do |i|
+	Like.create(user: User.find((i%10) + 1), comment: Comment.find(rand(1..20)))
 	puts "Comments likes ##{i +1} created"
 end
 

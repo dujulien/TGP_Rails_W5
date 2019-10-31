@@ -1,0 +1,32 @@
+<!-- ALERT MESSAGE IF UNSUCCESSFUL LOGIN -->
+
+<% if flash[:error] %>
+	<div class="alert alert-danger" role="alert">
+	  <button type="button" class="close" data-dismiss="alert">&times;</button>
+	  <p>Unsuccessful login due to the following reason(s) :</p>
+	  </div>
+<% end %>
+
+
+<!-- CREATE LOGIN FORM -->
+<br />
+<div class = "center">
+	<h1>Please login !</h1>
+	<br />
+
+	<%= form_tag session_index_path, method: "post" do %>
+
+		  <span><strong><%= label_tag 'Email address'%></strong></span>
+		  <%= text_field_tag 'email', nil , class: "form-control", placeholder: 'Your email address' %>
+		  <br />
+
+		  <span><strong><%= label_tag 'Password'%></strong></span>
+		  <%= text_field_tag 'password', nil, class: "form-control", placeholder: 'Enter your password' %>
+		  <br />
+
+	  	<%= submit_tag "Login", class: "btn btn-primary btn-lg btn-block" %>
+
+	<% end %>
+</div>
+
+
