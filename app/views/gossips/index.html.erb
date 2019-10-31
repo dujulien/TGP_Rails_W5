@@ -1,0 +1,30 @@
+<!-- Welcome Jumbotron -->
+<div class = "container jumb">
+	<div class="jumbotron">
+	  <h2 class="display-1">Welcome !</h2>
+	  <h3>This is my funny Gossip application :)</h3>
+	  <hr class="my-4">
+	  <p class="lead">Click on the button below to create a new Gossip.</p>
+	  <p class="lead">
+	    <span class="btn btn-primary btn-lg" role="button"> <%= link_to "New Gossip", new_gossip_path, style: 'color:#FFFFFF;', class: 'css_class'  %>
+	    </span>
+	  </p>
+	</div>
+</div>
+<!-- Gossip Cards <--></-->
+<div class = "container list" >
+	<h1> Here are all the gossips : </h1>
+	<br/>
+	<div class = "row">
+		<% @all_gossips.each_with_index do |gossip, i| %>
+			<div class="card col-xs-12 col-sm-12 col-md-4 col-lg-4">
+			  <div class="card-body">
+			  	<h3><%= gossip.title %></h3>
+			    <p><%= gossip.user.first_name %> <%= gossip.user.last_name %></p>
+				<span class="btn btn-warning" role="button"> <%= link_to "View Gossip", gossip_path(i+1), style: 'color:#000000;', class: 'css_class' %>
+			    </span>
+			  </div>
+			</div>
+		<% end %>
+	</div>
+</div>

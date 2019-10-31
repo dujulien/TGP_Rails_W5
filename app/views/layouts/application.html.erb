@@ -1,15 +1,53 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TGPRailsW5Jud</title>
+    <title>The Gossip Project</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+     <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="app/assets/stylesheets/application.css">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   </head>
 
   <body>
+      <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <%= link_to "The Gossip Project", gossips_path, class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <%= link_to "Team", team_index_path, class: "nav-link" %>
+            <span class="sr-only">(current)</span>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Contact", contacts_path, class: "nav-link" %>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  
+      <!-- Alert status -->
+    <% if flash[:success] %>
+      <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:success] %>
+      </div>
+    <% end %>
+
+
     <%= yield %>
+
   </body>
 </html>

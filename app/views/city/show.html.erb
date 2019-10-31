@@ -1,0 +1,9 @@
+<h1> <% @city.name %> </h1>
+<ol>
+<% @all_users.each do |user| %>
+	<% user.gossips.each do |gossip| %>
+		Voici les gossips
+			<ul><% gossip.content %></ul>
+	<% end %>
+<% end %>
+</ol>

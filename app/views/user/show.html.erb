@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="span2 ">
+      <img src="https://img.20mn.fr/meUBriI8Q8uqlURJQoQghA/1200x768_acteur-joaquin-phoenix-sous-traits-joker.jpg"  alt="" class="img-rounded">
+    </div>
+    <div class="span4 card col-xs-8 col-sm-8 col-md-8 col-lg-8">
+      <blockquote>
+        <p><%= @user.first_name %> <%= @user.last_name %> </p>
+        <small><cite title="Source Title"><%= link_to @user.city.name, city_path(@cityid) %>  <i class="icon-map-marker"></i></cite></small>
+      </blockquote>
+      <p>
+        <i class="icon-envelope"></i> <%= @user.email %> <br>
+        <i class="icon-gift"></i> January 30, <%= 2019 - @user.age %>
+        <p> <%= @user.description %> </p>
+      </p>
+    </div>
+  </div>
+</div>
+ 

@@ -1,0 +1,14 @@
+<div class = "container gossip">
+	<div class = "row">
+		<article class = "card col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<h1> <%= @gossip.title %></h1>
+			<br/>
+			<h4> <%= @gossip.content %> </h4>
+			<br/>
+			<p><em><strong> Author : </strong><%= @gossip.user.first_name %> <%= @gossip.user.last_name %>, from <%= @gossip.user.city.name %></em></p>
+		</article>
+	</div>
+	<br/>
+	<span class="btn btn-warning" role="button"> <%= link_to "Go to author's profile page", user_path(@gossip.user.id), style: 'color:#000000;', class: 'css_class' %>
+	</span>
+</div>

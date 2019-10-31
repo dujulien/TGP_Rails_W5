@@ -1,0 +1,37 @@
+<!-- ALERT MESSAGE IF INVALID GOSSIP -->
+
+<% if flash[:error] %>
+	<div class="alert alert-danger" role="alert">
+	  <button type="button" class="close" data-dismiss="alert">&times;</button>
+	  <p>The gossip could not be created due to the following reason(s) :</p>
+	  <ul>
+	    <% @gossip.errors.full_messages.each do |message| %>
+	      <li><%= message %></li>
+	    <% end %>
+	  </ul>
+	  </div>
+<% end %>
+
+
+<!-- CREATE GOSSIP FORM -->
+<br />
+<div class = "center">
+	<h1>Create your gossip !</h1>
+	<br />
+
+	<%= form_tag gossips_path, method: "post" do %>
+
+		  <span><strong><%= label_tag 'Title'%></strong></span>
+		  <%= text_field_tag 'title', 'Your gossip title', class: "form-control" %>
+		  <br /> 
+
+		  <span><strong><%= label_tag 'Content'%></strong></span>
+		  <%= text_area_tag 'content', 'Write your gossip', class: "form-control", rows:"5" %>
+		  <br /> 
+
+	  	<%= submit_tag "Create Gossip", class: "btn btn-primary btn-lg btn-block" %>
+
+	<% end %>
+</div>
+
+
