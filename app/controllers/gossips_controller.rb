@@ -19,7 +19,7 @@ before_action :authenticate_user, only: [:new, :edit, :update, :destroy, :create
   end
   
   def create
-    @gossip = Gossip.new(title: params[:title], content: params[:content], user: User.find(2))
+    @gossip = Gossip.new(title: params[:title], content: params[:content], user: current_user)
     if @gossip.save
       flash[:success] = "Well done, your gossip has been created successfully !"
       redirect_to gossips_path
@@ -31,26 +31,40 @@ before_action :authenticate_user, only: [:new, :edit, :update, :destroy, :create
 
   def edit
     @gossip = Gossip.find(params[:id].to_i)
+    if @gossip.user != current_user
+      flash[:danger] = "You cannot edit this gossip."
+      redirect_to gossips_path
+    end
   end
 
   def update
     @gossip = Gossip.find(params[:id].to_i)
-    if @gossip.update(title: params[:title], content: params[:content])
-      flash[:success] = "Well done, your gossip has been updated successfully !"
-      redirect_to gossips_path
-    elsif
-      flash.now[:error] = true
-      render :edit
+    if @gossip.user == current_user
+      if @gossip.update(title: params[:title], content: params[:content])
+        flash[:success] = "Well done, your gossip has been updated successfully !"
+        redirect_to gossips_path
+      elsif
+        flash.now[:error] = true
+        render :edit
+      end
+    else
+      flash[:danger] = "You cannot modify this gossip."
+      render :show
     end
   end
 
   def destroy
     @gossip = Gossip.find(params[:id].to_i)
-    if @gossip.delete
-      flash[:success] = "Your gossip has been deleted successfully !"
-      redirect_to gossips_path
-    elsif
-      flash.now[:error] = true
+    if @gossip.user == current_user
+      if @gossip.delete
+        flash[:success] = "Your gossip has been deleted successfully !"
+        redirect_to gossips_path
+      elsif
+        flash.now[:error] = true
+        render :show
+      end
+    else
+      flash.now[:danger] = "You cannot delete this gossip."
       render :show
     end
   end

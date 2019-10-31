@@ -21,7 +21,9 @@
 }
 
 .jumbotron {
-	height: 400px;
+	background-image: url('https://media.shoko.fr/article-3603398-head-f5/gossip-girl-leighton-meester-blake-lively.jpg');
+	color: '#FFFFFF';
+	height: 350px;
 	text-align: center;
 }
 
@@ -39,4 +41,8 @@
 .gossip {
 	margin: 20px;
 	text-align: center;
+}
+
+.nav-link {
+	font-size: 12pt;
 }

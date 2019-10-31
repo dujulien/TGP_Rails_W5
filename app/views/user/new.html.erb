@@ -34,7 +34,7 @@
 		  <br />
 
 		  <span><strong><%= label_tag 'City'%></strong></span>
-		  <%= text_area_tag 'city', nil, class: "form-control", placeholder: 'Your city'  %>
+		  <%= select_tag 'city', options_for_select(City.pluck(:name)), class: "form-control"%>
 		  <br />
 
 		  <span><strong><%= label_tag 'Description'%></strong></span>

@@ -1,0 +1,55 @@
+<!-- ALERT MESSAGE IF INVALID ACCOUNT -->
+
+<% if flash[:error] %>
+	<div class="alert alert-danger" role="alert">
+	  <button type="button" class="close" data-dismiss="alert">&times;</button>
+	  <p>The account could not be created due to the following reason(s) :</p>
+	  <ul>
+	    <% @user.errors.full_messages.each do |message| %>
+	      <li><%= message %></li>
+	    <% end %>
+	  </ul>
+	  </div>
+<% end %>
+
+
+<!-- EDIT PROFILE FORM -->
+<br />
+<div class = "center">
+	<h1>Change your profile !</h1>
+	<br />
+
+	<%= form_tag user_path, method: "patch" do %>
+
+		  <span><strong><%= label_tag 'First Name'%></strong></span>
+		  <%= text_field_tag 'first_name', @user.first_name, class: "form-control"%>
+		  <br /> 
+
+		  <span><strong><%= label_tag 'Last Name'%></strong></span>
+		  <%= text_field_tag 'last_name', @user.last_name, class: "form-control" %>
+		  <br /> 
+
+		  <span><strong><%= label_tag 'Age'%></strong></span>
+		  <%= text_field_tag 'age', @user.age, class: "form-control"%>
+		  <br />
+
+		  <span><strong><%= label_tag 'City'%></strong></span>
+		  <%= select_tag 'city', options_for_select(City.pluck(:name)), class: "form-control"%>
+		  <br />
+
+		  <span><strong><%= label_tag 'Description'%></strong></span>
+		  <%= text_area_tag 'description', @user.description, class: "form-control"%>
+		  <br />
+
+		  <span><strong><%= label_tag 'Email address'%></strong></span>
+		  <%= text_field_tag 'email', @user.email, class: "form-control"%>
+		  <br />
+
+	  	<%= submit_tag "Edit profile", class: "btn btn-primary btn-lg btn-block" %>
+	<br />
+	<% end %>
+	<br />
+	<br />
+</div>
+
+

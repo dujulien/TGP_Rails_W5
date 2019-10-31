@@ -1,0 +1,28 @@
+<!-- ALERT MESSAGE IF INVALID COMMENT -->
+
+<% if flash[:error] %>
+	<div class="alert alert-danger" role="alert">
+	  <button type="button" class="close" data-dismiss="alert">&times;</button>
+	  <p>The comment could not be created</p>
+	  </div>
+<% end %>
+
+
+<!-- CREATE CONTENT FORM -->
+<br />
+<div class = "center">
+	<h1>Comment this gossip !</h1>
+	<br />
+
+	<%= form_tag gossip_comments_path, method: "post" do %>
+
+		  <span><strong><%= label_tag 'Content'%></strong></span>
+		  <%= text_area_tag 'content', nil , class: "form-control", placeholder: "Write your comment", rows:"5" %>
+		  <br /> 
+
+	  	<%= submit_tag "Submit comment", class: "btn btn-primary btn-lg btn-block" %>
+
+	<% end %>
+</div>
+
+
