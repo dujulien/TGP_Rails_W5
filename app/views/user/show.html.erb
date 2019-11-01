@@ -1,19 +1,23 @@
-<div class="container">
-  <div class="row">
-    <div class="span2 ">
-      <img src="https://img.20mn.fr/meUBriI8Q8uqlURJQoQghA/1200x768_acteur-joaquin-phoenix-sous-traits-joker.jpg"  alt="" class="img-rounded">
-    </div>
-    <div class="span4 card col-xs-8 col-sm-8 col-md-8 col-lg-8">
-      <blockquote>
-        <p><%= @user.first_name %> <%= @user.last_name %> </p>
-        <small><cite title="Source Title"><%= link_to @user.city.name, city_path(@cityid) %>  <i class="icon-map-marker"></i></cite></small>
-      </blockquote>
-      <p>
-        <i class="icon-envelope"></i> <%= @user.email %> <br>
-        <i class="icon-gift"></i> January 30, <%= 2019 - @user.age %>
-        <p> <%= @user.description %> </p>
-      </p>
-    </div>
-  </div>
-</div>
- 
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+ <div class="container prof">
+   <h1> Profile Page </h1>
+   <br/>
+    <div class="row">
+        <div class="col-sm-4 col-md-4">
+            <img src="https://img.20mn.fr/meUBriI8Q8uqlURJQoQghA/1200x768_acteur-joaquin-phoenix-sous-traits-joker.jpg"
+            alt="" class="img-rounded img-responsive" />
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <blockquote>
+                <p style="font-size:24px"><%= @user.first_name %> <%= @user.last_name %></p> <cite title="Source Title"><%= link_to @user.city.name, city_path(@cityid) %> <i class="glyphicon glyphicon-map-marker"></i></cite>
+            </blockquote>
+            <p> <i class="glyphicon glyphicon-envelope"></i> <%= @user.email %> 
+                <br/> 
+                <br/> <i class="glyphicon glyphicon-gift"></i> January 30, <%= 2019 - @user.age %> </p>
+                <p> <%= @user.description %> </p>
+        </div>
+      
+     
