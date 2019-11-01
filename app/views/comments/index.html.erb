@@ -1,0 +1,19 @@
+<!-- Comments Cards -->
+<div class = "container list" >
+	<h1> Here are all the <%= @all_gossip.comment.size %> comments : </h1>
+	<br/>
+	<div class = "row">
+		<% @all_gossip.comment.each_with_index do |comment, i| %>
+			<div class="card col-xs-12 col-sm-12 col-md-4 col-lg-4">
+			  <div class="card-body">
+			  	<h3><%= comment.content%></h3>
+			    <p><%= comment.user %></p>
+			    <% if current_user == @comment.user %>
+					<span class="btn btn-warning" role="button"> <%= link_to "Edit the gossip", edit_gossip_comment_path(@comment.id), style: 'color:#000000;', class: 'css_class' %>
+					</span>
+				<% end %>
+			  </div>
+			</div>
+		<% end %>
+	</div>
+</div>
