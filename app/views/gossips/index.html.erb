@@ -26,8 +26,23 @@
 			  <div class="card-body">
 			  	<h3><%= gossip.title %></h3>
 			    <p><%= gossip.user.first_name %> <%= gossip.user.last_name %></p>
+			    <p><%= gossip.comments.count %> comments</p>
 				<span class="btn btn-warning" role="button"> <%= link_to "View Gossip", gossip_path(gossip.id), style: 'color:#000000;', class: 'css_class' %>
 			    </span>
+			    <% if current_user %>
+				    <% if current_user.in?(gossip.likes.pluck(:user_id)) %>
+					    <button type="button" class="btn btn-primary btn-md">
+						  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 
+						  <%= link_to gossip.likes.count, like_path(gossip.likes.find_by(user_id: current_user_id).id), method: :delete, style: 'color:#000000;'%>
+						  <!-- Like (<%= gossip.likes.count %>)-->
+						</button>
+					<% else %>
+						<button type="button" class="btn btn-default btn-md">
+						  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+						  <%= link_to gossip.likes.count, like_index_path, method: :post, value: gossip.id, style: 'color:#000000;'%>
+						</button>
+					<% end %>
+				<% end %>
 			  </div>
 			</div>
 		<% end %>

@@ -2,12 +2,12 @@ class GossipsController < ApplicationController
 before_action :authenticate_user, only: [:new, :edit, :update, :destroy, :create]
 
   # def index_secret
-  # 	@user_name = params[:user_name]
-  # 	@all_gossips = Gossip.all
+  #   @user_name = params[:user_name]
+  #   @all_gossips = Gossip.all
   # end
 
   def index
-  	@all_gossips = Gossip.order(:id).all
+    @all_gossips = Gossip.order(:id).all
     @gossip = Gossip.new
   end
 
