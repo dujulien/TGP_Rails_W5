@@ -1,13 +1,15 @@
-class LikesController < ApplicationController
+class LikeController < ApplicationController
 before_action :authenticate_user, only: [:destroy, :create]
 
   def create
-    @like = Like.create(user_id: current_user_id, gossip_id: params[:gossip_id] )
+    @like = Like.create(user_id: current_user.id, gossip_id: params[:gossip_id])
+    redirect_to request.referrer
   end
   
   def destroy
-    @like = Like.find(params[:id].to_i)
+    @like = Like.find(params[:id])
     @like.delete
+    redirect_to request.referrer
   end
 
 private

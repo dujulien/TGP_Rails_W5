@@ -30,16 +30,16 @@
 				<span class="btn btn-warning" role="button"> <%= link_to "View Gossip", gossip_path(gossip.id), style: 'color:#000000;', class: 'css_class' %>
 			    </span>
 			    <% if current_user %>
-				    <% if current_user.in?(gossip.likes.pluck(:user_id)) %>
+				    <% if current_user.id.in?(gossip.likes.pluck(:user_id)) %>
 					    <button type="button" class="btn btn-primary btn-md">
 						  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 
-						  <%= link_to gossip.likes.count, like_path(gossip.likes.find_by(user_id: current_user_id).id), method: :delete, style: 'color:#000000;'%>
-						  <!-- Like (<%= gossip.likes.count %>)-->
+						  <%= link_to gossip.likes.count, {:controller => "like", :action => "destroy", :id => Like.find_by(user_id: current_user.id, gossip_id: gossip.id).id}, method: :delete, style: 'color:#FFFFFF;'%>
+						  <!-- like_path(Like.find_by(user_id: current_user.id, gossip_id: gossip.id))-->
 						</button>
 					<% else %>
 						<button type="button" class="btn btn-default btn-md">
 						  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-						  <%= link_to gossip.likes.count, like_index_path, method: :post, value: gossip.id, style: 'color:#000000;'%>
+						  <%= link_to gossip.likes.count,{:controller => "like", :action => "create", :gossip_id => gossip.id}, method: :post, style: 'color:#000000;'%>
 						</button>
 					<% end %>
 				<% end %>
