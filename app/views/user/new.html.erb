@@ -46,11 +46,11 @@
 		  <br />
 
 		  <span><strong><%= label_tag 'Password'%></strong></span>
-		  <%= text_field_tag 'password', nil, class: "form-control", placeholder: 'Choose a password'%>
+		  <%= text_field_tag 'password', nil, class: "form-control", type: 'password', placeholder: 'Choose a password'%>
 		  <br />
 
 		  <span><strong><%= label_tag 'Confirm your password'%></strong></span>
-		  <%= text_field_tag 'password_confirmation', nil, class: "form-control", placeholder: 'Confirm your password'  %>
+		  <%= text_field_tag 'password_confirmation', nil, class: "form-control", type: 'password', placeholder: 'Confirm your password'  %>
 		  <br />
 
 	  	<%= submit_tag "Create account", class: "btn btn-primary btn-lg btn-block" %>
